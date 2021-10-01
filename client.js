@@ -11,7 +11,10 @@ function ready() {
   console.log('in jq');
 
   // add event listeners here
+  // listen to clicks on the submit button to create new employee
   $(`#submit_button`).on(`click`, addEmployee);
+  // listen to clicks on possible delete buttons to remove employees from the list
+  $(`#table_body`).on(`click`, `.delete_button`, removeEmployee);
 }
 
 function addEmployee() {
@@ -34,6 +37,12 @@ function addEmployee() {
   // empty inputs and set focus to first name
   emptyInputsAndFocus();
   updateDOM();
+}
+
+function removeEmployee() {
+  console.log(`in remove`);
+  // traverse the DOM and delete the whole row
+  $(this).closest(`tr`).remove();
 }
 
 function emptyInputsAndFocus() {
