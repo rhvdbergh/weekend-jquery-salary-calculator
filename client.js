@@ -125,5 +125,7 @@ function updateTotalCostsDOM() {
   // if the total montly costs exceeds $20,000, add red background to total monthly cost
   if (monthlyCosts > 20000) {
     $(`#total_monthly_message`).addClass(`redBackground`);
+  } else {
+    $(`#total_monthly_message`).removeClass(`redBackground`);
   }
 }
