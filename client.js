@@ -1,6 +1,9 @@
 console.log('in js');
 // store employees in an array
 const employees = [];
+// monthly costs, a total of all employee salaries
+let monthlyCosts = 0;
+
 // document is loaded, run ready()
 $(ready);
 
@@ -18,8 +21,12 @@ function addEmployee() {
     lastName: $(`#input_last_name`).val(),
     id: $(`#input_id`).val(),
     title: $(`#input_title`).val(),
-    salary: $(`#input_salary`).val(),
+    salary: Number($(`#input_salary`).val()),
   };
+
+  // update the total monthly costs by adding this employee's salary
+  monthlyCosts += employee.salary;
+  console.log(monthlyCosts);
 
   // push this employee to the employees array
   employees.push(employee);
