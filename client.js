@@ -21,10 +21,6 @@ function addEmployee() {
   // grab the inputs and save to object
   let employee = grabInputs();
 
-  // update the total monthly costs by adding this employee's salary
-  monthlyCosts += employee.salary;
-  console.log(monthlyCosts);
-
   // push this employee to the employees array
   employees.push(employee);
 
@@ -68,8 +64,6 @@ function removeEmployee() {
   // traverse the DOM and delete the whole row
   tableRow.remove();
 
-  // remove salary from the monthly costs and update DOM
-  monthlyCosts -= salary;
   updateTotalCostsDOM();
 }
 
@@ -118,6 +112,8 @@ function updateTableDOM() {
 }
 
 function updateTotalCostsDOM() {
+  // calculate the total monthly costs
+  calcMonthlyCosts();
   // use the montlyCosts variable to update the total monthly
   // .toFixed(2) assures 2 decimal spaces
   $(`#total`).text(monthlyCosts.toFixed(2));
@@ -127,5 +123,12 @@ function updateTotalCostsDOM() {
     $(`#total_monthly_message`).addClass(`redBackground`);
   } else {
     $(`#total_monthly_message`).removeClass(`redBackground`);
+  }
+}
+
+function calcMonthlyCosts() {
+  monthlyCosts = 0;
+  for (let employee of employees) {
+    monthlyCosts += employee.salary;
   }
 }
