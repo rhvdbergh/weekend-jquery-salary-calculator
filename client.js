@@ -49,6 +49,9 @@ function removeEmployee() {
     let employee = employees[i];
     console.log(employee);
     if (
+      // we have to check all the fields to be sure
+      // we don't have a unique ID (at least, there's no validation)
+      // so we have to be extra sure
       firstName == employee.firstName &&
       lastName == employee.lastName &&
       id == employee.id &&
