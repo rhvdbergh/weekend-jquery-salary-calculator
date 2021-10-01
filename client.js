@@ -19,13 +19,7 @@ function ready() {
 
 function addEmployee() {
   // grab the inputs and save to object
-  let employee = {
-    firstName: $(`#input_first_name`).val(),
-    lastName: $(`#input_last_name`).val(),
-    id: $(`#input_id`).val(),
-    title: $(`#input_title`).val(),
-    salary: Number($(`#input_salary`).val()),
-  };
+  let employee = grabInputs();
 
   // update the total monthly costs by adding this employee's salary
   monthlyCosts += employee.salary;
@@ -41,8 +35,46 @@ function addEmployee() {
 
 function removeEmployee() {
   console.log(`in remove`);
+  let tableRow = $(this).closest(`tr`);
+  let firstName = tableRow.find(`.first_name`).text();
+  let lastName = tableRow.find(`.last_name`).text();
+  let id = tableRow.find(`.id`).text();
+  let title = tableRow.find(`.title`).text();
+  let salary = tableRow.find(`.salary`).text();
+
+  // check the array for the employee to remove
+  // find that employee's index
+  let index = -1;
+  for (let i = 0; i < employees.length; i++) {
+    let employee = employees[i];
+    console.log(employee);
+    if (
+      firstName == employee.firstName &&
+      lastName == employee.lastName &&
+      id == employee.id &&
+      title == employee.title &&
+      salary == employee.salary
+    ) {
+      index = i;
+    }
+  }
+
+  // remove the employee at the index from the array
+  employees.splice(index, 1);
+
   // traverse the DOM and delete the whole row
-  $(this).closest(`tr`).remove();
+  tableRow.remove();
+}
+
+// grabs the inputs from the input values
+function grabInputs() {
+  return {
+    firstName: $(`#input_first_name`).val(),
+    lastName: $(`#input_last_name`).val(),
+    id: $(`#input_id`).val(),
+    title: $(`#input_title`).val(),
+    salary: Number($(`#input_salary`).val()),
+  };
 }
 
 function emptyInputsAndFocus() {
@@ -64,11 +96,11 @@ function updateDOM() {
     // first construct the table row
     let row = `
     <tr>
-      <td>${employee.firstName}</td>
-      <td>${employee.lastName}</td>
-      <td>${employee.id}</td>
-      <td>${employee.title}</td>
-      <td>${employee.salary}</td>
+      <td class="first_name">${employee.firstName}</td>
+      <td class="last_name">${employee.lastName}</td>
+      <td class="id">${employee.id}</td>
+      <td class="title">${employee.title}</td>
+      <td class="salary">${employee.salary}</td>
       <td><button class="delete_button">DELETE</button></td>
     </tr>
     `;
