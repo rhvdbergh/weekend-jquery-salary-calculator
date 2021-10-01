@@ -102,7 +102,7 @@ function updateTableDOM() {
       <td class="id">${employee.id}</td>
       <td class="title">${employee.title}</td>
       <td class="salary">${employee.salary}</td>
-      <td><button class="delete_button">DELETE</button></td>
+      <td><button class="delete_button btn btn-danger">DELETE</button></td>
     </tr>
     `;
     // append row to the table body
