@@ -70,4 +70,7 @@ function updateDOM() {
   // use the montlyCosts variable to update the total monthly
   // .toFixed(2) assures 2 decimal spaces
   $(`#total`).text(monthlyCosts.toFixed(2));
+
+  // if the total montly costs exceeds $20,000, add red background to total monthly cost
+  $(`#total_monthly_message`).addClass(`redBackground`);
 }
