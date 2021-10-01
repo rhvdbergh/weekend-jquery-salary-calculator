@@ -30,7 +30,7 @@ function addEmployee() {
 
   // empty inputs and set focus to first name
   emptyInputsAndFocus();
-  updateDOM();
+  updateTableDOM();
 }
 
 function removeEmployee() {
@@ -67,6 +67,10 @@ function removeEmployee() {
 
   // traverse the DOM and delete the whole row
   tableRow.remove();
+
+  // remove salary from the monthly costs and update DOM
+  monthlyCosts -= salary;
+  updateTotalCostsDOM();
 }
 
 // grabs the inputs from the input values
@@ -89,7 +93,7 @@ function emptyInputsAndFocus() {
   $(`#input_salary`).val('');
 }
 
-function updateDOM() {
+function updateTableDOM() {
   let tableBody = $(`#table_body`);
   // clear the table body
   tableBody.empty();
@@ -110,7 +114,10 @@ function updateDOM() {
     // append row to the table body
     tableBody.append(row);
   } // end for..let loop
+  updateTotalCostsDOM();
+}
 
+function updateTotalCostsDOM() {
   // use the montlyCosts variable to update the total monthly
   // .toFixed(2) assures 2 decimal spaces
   $(`#total`).text(monthlyCosts.toFixed(2));
