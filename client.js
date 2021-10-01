@@ -12,8 +12,6 @@ function ready() {
 }
 
 function addEmployee() {
-  console.log(`in add e`);
-
   // grab the inputs and save to object
   let employee = {
     firstName: $(`#input_first_name`).val(),
@@ -22,7 +20,6 @@ function addEmployee() {
     title: $(`#input_title`).val(),
     salary: $(`#input_salary`).val(),
   };
-  console.log(employee);
 
   // push this employee to the employees array
   employees.push(employee);
@@ -44,6 +41,19 @@ function updateDOM() {
   tableBody.empty();
   // display to the DOM
   for (let employee of employees) {
-    console.log(employee);
-  }
+    // add each employee to the DOM
+    // first construct the table row
+    let row = `
+    <tr>
+      <td>${employee.firstName}</td>
+      <td>${employee.lastName}</td>
+      <td>${employee.id}</td>
+      <td>${employee.title}</td>
+      <td>${employee.salary}</td>
+      <td><button class="delete_button">DELETE</button></td>
+    </tr>
+    `;
+    // append row to the table body
+    tableBody.append(row);
+  } // end for..let loop
 }
