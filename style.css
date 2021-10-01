@@ -1,3 +1,23 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #407899;
+  color: whitesmoke;
+}
+
 .redBackground {
   background-color: red;
+}
+
+.table {
+}
+
+.delete_button {
+  float: right;
+}
+
+#total_monthly_message {
+  float: right;
 }

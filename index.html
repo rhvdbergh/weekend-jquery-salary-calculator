@@ -12,14 +12,10 @@
   </head>
   <body>
     <header>
-      <div class="container">
-        <div class="jumbotron">
-          <h1>Salary Calculator</h1>
-        </div>
-      </div>
+      <h1>Salary Calculator</h1>
     </header>
     <main id="container_main">
-      <div id="container_input">
+      <div id="container_input" class="container">
         <h2>Add Employee</h2>
         <input type="text" id="input_first_name" placeholder="First Name" />
         <input type="text" id="input_last_name" placeholder="Last Name" />
@@ -28,7 +24,7 @@
         <input type="number" id="input_salary" placeholder="Salary" />
         <button id="submit_button" class="btn btn-success">Submit</button>
       </div>
-      <div id="container_table">
+      <div id="container_table" class="container">
         <table class="table">
           <thead>
             <tr>
@@ -43,7 +39,7 @@
           <tbody id="table_body"></tbody>
         </table>
       </div>
-      <div id="container_total">
+      <div id="container_total" class="container">
         <h2 id="total_monthly_message">
           Total Monthly: $<span id="total">0.00</span>
         </h2>
