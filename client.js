@@ -32,14 +32,17 @@ function addEmployee() {
   employees.push(employee);
 
   // empty inputs and set focus to first name
+  emptyInputsAndFocus();
+  updateDOM();
+}
+
+function emptyInputsAndFocus() {
   $(`#input_first_name`).val('');
   $(`#input_first_name`).focus();
   $(`#input_last_name`).val('');
   $(`#input_id`).val('');
   $(`#input_title`).val('');
   $(`#input_salary`).val('');
-
-  updateDOM();
 }
 
 function updateDOM() {
