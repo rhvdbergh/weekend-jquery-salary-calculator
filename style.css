@@ -18,6 +18,16 @@ header {
   float: right;
 }
 
+#container_input {
+  padding: 20px;
+}
+
+#container_inputs_and_button {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
 #total_monthly_message {
   float: right;
 }
