@@ -66,4 +66,8 @@ function updateDOM() {
     // append row to the table body
     tableBody.append(row);
   } // end for..let loop
+
+  // use the montlyCosts variable to update the total monthly
+  // .toFixed(2) assures 2 decimal spaces
+  $(`#total`).text(monthlyCosts.toFixed(2));
 }
