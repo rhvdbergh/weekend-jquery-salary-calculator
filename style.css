@@ -7,11 +7,19 @@ header {
   color: whitesmoke;
 }
 
+td {
+  /* width: 16.6%; */
+  overflow: hidden;
+}
+
 .redBackground {
   background-color: red;
 }
 
+/* Found this article https://stackoverflow.com/questions/4457506/set-the-table-column-width-constant-regardless-of-the-amount-of-text-in-its-cell */
+/* Couldn't figure out why the size wouldn't stay the same, though I set a fixed width on td */
 .table {
+  table-layout: fixed;
 }
 
 .delete_button {
