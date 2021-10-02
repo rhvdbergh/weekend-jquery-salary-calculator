@@ -3,6 +3,12 @@ console.log('in js');
 const employees = [];
 // monthly costs, a total of all employee salaries
 let monthlyCosts = 0;
+// this uses the Intl global object to format the monthly costs
+const formatInUSD = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  currencyDisplay: 'narrowSymbol',
+});
 
 // document is loaded, run ready()
 $(ready);
@@ -117,12 +123,7 @@ function updateTotalCostsDOM() {
   // use the montlyCosts variable to update the total monthly
   // .toFixed(2) assures 2 decimal spaces
 
-  // this uses the Intl global object to format the monthly costs
-  let formattedCosts = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'narrowSymbol',
-  }).format(monthlyCosts);
+  let formattedCosts = formatInUSD.format(monthlyCosts);
 
   $(`#total`).text(formattedCosts);
 
