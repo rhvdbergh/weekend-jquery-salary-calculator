@@ -128,8 +128,10 @@ function updateTotalCostsDOM() {
 }
 
 function calcMonthlyCosts() {
-  monthlyCosts = 0;
-  for (let employee of employees) {
-    monthlyCosts += employee.salary;
-  }
+  // not sure if this is actually easier to read than the for loop
+  // but maybe more extensible?
+  // .reduce() has to return an object with the key and value being counted
+  monthlyCosts = employees.reduce((acc, cur) => {
+    return { salary: acc.salary + cur.salary };
+  }).salary;
 }
