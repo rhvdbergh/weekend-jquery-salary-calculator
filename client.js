@@ -29,8 +29,7 @@ function addEmployee() {
 
   // create a unique ID for the employee using Symbol()
   // can't trust the user input for the employee number
-  let sym = Symbol();
-  employee.symbolID = sym;
+  employee.symbolID = Symbol();
 
   // push this employee to the employees array
   employees.push(employee);
@@ -49,58 +48,20 @@ function removeEmployee() {
   // retrieve the salary and symbol ID of this employee
   // using destructuring
   // the salary and symbol ID have been stored using the jQuery .data method
-  let { symbolID, salary } = currentRow.data('data');
+  let { symbolID } = currentRow.data('data');
   console.log('here it is');
-  // console.log($(this).closest(`tr`).data('data'));
-  console.log(symbolID, salary);
 
   // find the index of the employee with this symbol in the employees array
   let index = employees.findIndex((employee) => {
     return employee.symbolID === symbolID;
   });
 
-  console.log(index);
-
-  // let
-
-  // for (let employee of employees) {
-  //   if (symbolID === employee.symbolID) {
-  //     console.log(`found`);
-  //   }
-  // }
-
-  // let firstName = tableRow.find(`.first_name`).text();
-  // let lastName = tableRow.find(`.last_name`).text();
-  // let id = tableRow.find(`.id`).text();
-  // let title = tableRow.find(`.title`).text();
-  // let salary = tableRow.find(`.salary`).text();
-
-  // check the array for the employee to remove
-  // find that employee's index
-  // let index = -1;
-  // for (let i = 0; i < employees.length; i++) {
-  //   let employee = employees[i];
-  //   console.log(employee);
-  //   if (
-  //     // we have to check all the fields to be sure
-  //     // we don't have a unique ID (at least, there's no validation)
-  //     // so we have to be extra sure
-  //     firstName == employee.firstName &&
-  //     lastName == employee.lastName &&
-  //     id == employee.id &&
-  //     title == employee.title &&
-  //     salary == employee.salary
-  //   ) {
-  //     index = i;
-  //   }
-  // }
-
   // remove the employee at the index from the array
   employees.splice(index, 1);
 
-  // delete the whole row
+  // delete the whole row from the DOM
+  // no need to call updateTableDOM() because this removes the entry
   currentRow.remove();
-
   updateTotalCostsDOM();
 }
 
@@ -143,11 +104,8 @@ function updateTableDOM() {
     </tr>
     `);
 
-    // add jQuery data to this employee entry
-    // especially the symbol ID and the employee's salary
-    row.data('data', { symbolID: employee.symbolID, salary: employee.salary });
-    console.log('add data');
-    console.log(row.data('data'));
+    // add jQuery data to this employee entry containing the unique ID of the employee
+    row.data('data', { symbolID: employee.symbolID });
 
     // append row to the table body
     tableBody.append(row);
@@ -158,11 +116,11 @@ function updateTableDOM() {
 function updateTotalCostsDOM() {
   // calculate the total monthly costs
   calcMonthlyCosts();
-  // use the montlyCosts variable to update the total monthly
-  // .toFixed(2) assures 2 decimal spaces
 
+  // format the number for USD
   let formattedCosts = formatInUSD.format(monthlyCosts);
 
+  // use the montlyCosts variable to update the total monthly
   $(`#total`).text(formattedCosts);
 
   // if the total montly costs exceeds $20,000, add red background to total monthly cost
