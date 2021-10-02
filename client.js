@@ -116,7 +116,15 @@ function updateTotalCostsDOM() {
   calcMonthlyCosts();
   // use the montlyCosts variable to update the total monthly
   // .toFixed(2) assures 2 decimal spaces
-  $(`#total`).text(monthlyCosts.toFixed(2));
+
+  // this uses the Intl global object to format the monthly costs
+  let formattedCosts = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'narrowSymbol',
+  }).format(monthlyCosts);
+
+  $(`#total`).text(formattedCosts);
 
   // if the total montly costs exceeds $20,000, add red background to total monthly cost
   if (monthlyCosts > 20000) {
