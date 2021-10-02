@@ -77,12 +77,8 @@ function grabInputs() {
 }
 
 function emptyInputsAndFocus() {
-  $(`#input_first_name`).val('');
+  $(`.input`).val('');
   $(`#input_first_name`).focus();
-  $(`#input_last_name`).val('');
-  $(`#input_id`).val('');
-  $(`#input_title`).val('');
-  $(`#input_salary`).val('');
 }
 
 function updateTableDOM() {
